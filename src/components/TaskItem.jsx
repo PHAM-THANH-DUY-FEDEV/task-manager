@@ -26,7 +26,7 @@ const TaskItem = (props) => {
         )}
 
         {dateInfo === "Quá hạn" && (
-          <div className="text-xs px-2 py-2 bg-red-300 text-white rounded-md">
+          <div className="text-xs px-2 py-2 bg-red-500 text-white rounded-md">
             Quá hạn
           </div>
         )}
@@ -42,7 +42,7 @@ const TaskItem = (props) => {
       </div>
       <div className="pb-4 px-4 flex justify-end">
         <button
-          className="transition-all w-8 h-8 flex items-center justify-center rounded-full text-white bg-[#ffa32c] hover:bg-red-400"
+          className="transition-all w-8 h-8 flex items-center justify-center rounded-full text-white bg-[#ffa32c] hover:bg-red-500"
           onClick={() => onDeleteTask(props.id)}
         >
           <Trash2 size={16} />

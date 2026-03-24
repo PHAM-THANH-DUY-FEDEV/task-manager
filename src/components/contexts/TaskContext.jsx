@@ -17,11 +17,25 @@ export const TaskProvider = ({ children }) => {
   });
   const [filteredTasks, setFilteredTasks] = useState(tasks);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
   const [taskSelected, setTaskSelected] = useState(() => {
     const data = localStorage.getItem("taskSelected");
     return data ? JSON.parse(data) : null;
   });
   const [showAddForm, setShowAddForm] = useState(false);
+
+  const handleSearchTask = (value) => {
+    setSearchTerm(value);
+    const query = value.toLowerCase();
+    const filtered = tasks.filter((task) => {
+      const matchesStatus =
+        statusFilter === "all" || task.status === statusFilter;
+      const matchesTitle = task.title.toLowerCase().includes(query);
+      return matchesStatus && matchesTitle;
+    });
+    setFilteredTasks(filtered);
+  };
+
   const handleFilterTask = (status) => {
     setStatusFilter(status);
     if (status === "all") {
@@ -31,6 +45,7 @@ export const TaskProvider = ({ children }) => {
       setFilteredTasks(filtered);
     }
   };
+
   const updateTaskStatus = (id, newStatus) => {
     setTasks((prev) =>
       prev.map((task) =>
@@ -38,6 +53,7 @@ export const TaskProvider = ({ children }) => {
       ),
     );
   };
+
   const onDeleteTask = (id) => {
     if (!window.confirm("Bạn có chắc muốn xóa task?")) return;
     setTasks((prev) => {
@@ -68,9 +84,11 @@ export const TaskProvider = ({ children }) => {
     if (diffDays <= 1) return "Cận Dealine";
     return "";
   };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     handleFilterTask(statusFilter);
+    handleSearchTask(searchTerm);
   }, [tasks]);
 
   return (
@@ -87,6 +105,7 @@ export const TaskProvider = ({ children }) => {
         getDeadlineStatus,
         filteredTasks,
         handleFilterTask,
+        handleSearchTask,
       }}
     >
       {children}

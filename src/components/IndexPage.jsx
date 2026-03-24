@@ -7,10 +7,14 @@ import AddTaskForm from "./AddTaskForm";
 import FilterBar from "./FilterBar";
 
 const IndexPage = () => {
-  const [statusSelected, setStatusSelected] = useState("all");
-
-  const { tasks, setTasks, taskSelected, showAddForm, setShowAddForm } =
-    useContext(TaskContext);
+  const {
+    tasks,
+    setTasks,
+    taskSelected,
+    showAddForm,
+    setShowAddForm,
+    handleSearchTask,
+  } = useContext(TaskContext);
   console.log(tasks);
   const handleAddTask = (task) => {
     console.log(tasks);
@@ -32,12 +36,16 @@ const IndexPage = () => {
         <div className="w-full p-4">
           <input
             type="text"
+            onChange={(e) => {
+              console.log(e.target.value);
+              handleSearchTask(e.target.value);
+            }}
             placeholder="Tìm kiếm công việc..."
             className="w-full p-4 border rounded-xl outline-none focus:ring-2 focus:ring-orange-400 border-[#ffa32c]"
           />
         </div>
         <div className="flex justify-between">
-          <FilterBar statusSelected={statusSelected}></FilterBar>
+          <FilterBar></FilterBar>
 
           <div className="mx-4 mb-8 bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-90 rounded-full ">
             <button
