@@ -15,11 +15,22 @@ export const TaskProvider = ({ children }) => {
       return [];
     }
   });
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
+  const [statusFilter, setStatusFilter] = useState("all");
   const [taskSelected, setTaskSelected] = useState(() => {
     const data = localStorage.getItem("taskSelected");
     return data ? JSON.parse(data) : null;
   });
   const [showAddForm, setShowAddForm] = useState(false);
+  const handleFilterTask = (status) => {
+    setStatusFilter(status);
+    if (status === "all") {
+      setFilteredTasks(tasks);
+    } else {
+      const filtered = tasks.filter((task) => task.status === status);
+      setFilteredTasks(filtered);
+    }
+  };
   const updateTaskStatus = (id, newStatus) => {
     setTasks((prev) =>
       prev.map((task) =>
@@ -54,11 +65,12 @@ export const TaskProvider = ({ children }) => {
     due.setHours(0, 0, 0, 0);
     const diffDays = (due - today) / (1000 * 60 * 60 * 24);
     if (diffDays < 0) return "Quá hạn";
-    if (diffDays <= 2) return "Cận Dealine";
+    if (diffDays <= 1) return "Cận Dealine";
     return "";
   };
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    handleFilterTask(statusFilter);
   }, [tasks]);
 
   return (
@@ -73,6 +85,8 @@ export const TaskProvider = ({ children }) => {
         showAddForm,
         setShowAddForm,
         getDeadlineStatus,
+        filteredTasks,
+        handleFilterTask,
       }}
     >
       {children}

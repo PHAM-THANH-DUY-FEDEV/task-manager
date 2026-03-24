@@ -4,6 +4,7 @@ import { TaskContext } from "./contexts/TaskContext";
 import TaskDetail from "./TaskDetail";
 import { Plus } from "lucide-react";
 import AddTaskForm from "./AddTaskForm";
+import FilterBar from "./FilterBar";
 
 const IndexPage = () => {
   const [statusSelected, setStatusSelected] = useState("all");
@@ -16,7 +17,7 @@ const IndexPage = () => {
     const newTask = {
       ...task,
       id: Date.now(),
-      status: "Vừa tạo",
+      status: "Vừa Tạo",
     };
 
     setTasks((prevTasks) => {
@@ -36,28 +37,8 @@ const IndexPage = () => {
           />
         </div>
         <div className="flex justify-between">
-          <div className="mx-4 mb-8 flex gap-4">
-            <ButtonSelect
-              statusButton="all"
-              statusCurrent={statusSelected}
-              textButton="Tất Cả Task"
-            ></ButtonSelect>
-            <ButtonSelect
-              statusButton="done"
-              statusCurrent={statusSelected}
-              textButton="Hoàn Thành"
-            ></ButtonSelect>
-            <ButtonSelect
-              statusButton="todo"
-              statusCurrent={statusSelected}
-              textButton="Vừa Tạo"
-            ></ButtonSelect>
-            <ButtonSelect
-              statusButton="inprocess"
-              statusCurrent={statusSelected}
-              textButton="Đang Làm"
-            ></ButtonSelect>
-          </div>
+          <FilterBar statusSelected={statusSelected}></FilterBar>
+
           <div className="mx-4 mb-8 bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-90 rounded-full ">
             <button
               className="py-1.5 px-4 flex gap-2 justify-center items-center cursor-pointer"

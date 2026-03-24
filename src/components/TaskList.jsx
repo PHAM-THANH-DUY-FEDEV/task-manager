@@ -3,11 +3,11 @@ import TaskItem from "./TaskItem";
 import { TaskContext } from "./contexts/TaskContext";
 
 const TaskList = () => {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { filteredTasks, setTasks } = useContext(TaskContext);
 
   return (
     <div className="flex gap-4 flex-wrap mt-4 justify-center">
-      {tasks?.map((task) => (
+      {filteredTasks?.map((task) => (
         <TaskItem
           key={task.id}
           id={task.id}
