@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TaskContext } from "./contexts/TaskContext";
 
 const AddTaskForm = ({ onAdd }) => {
+  const { setShowPoppup } = useContext(TaskContext);
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -27,6 +29,7 @@ const AddTaskForm = ({ onAdd }) => {
       description: "",
       deadline: "",
     });
+    setShowPoppup(false);
   };
 
   return (
