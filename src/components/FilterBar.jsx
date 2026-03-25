@@ -4,7 +4,7 @@ import { TaskContext } from "./contexts/TaskContext";
 const FilterBar = () => {
   const [statusSelected, setStatusSelected] = useState("all");
   return (
-    <div className="mx-4 mb-8 flex gap-4">
+    <div className="flex gap-4">
       <ButtonSelect
         statusButton="all"
         statusCurrent={statusSelected}
@@ -50,7 +50,7 @@ const ButtonSelect = ({
   const { handleFilterTask } = useContext(TaskContext);
   return (
     <button
-      className={`rounded-full py-1.5 px-4 font-semibold cursor-pointer text-black transition-all ${statusCurrent === statusButton ? "bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white" : " text-[#ffa32c] border border-[#ffa32c]"} hover:bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] hover:text-white`}
+      className={`rounded-full py-1.5 md:py-2 px-4 font-semibold cursor-pointer text-sm text-black transition-all ${statusCurrent === statusButton ? "bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white" : " text-[#ffa32c] border border-[#ffa32c]"} hover:bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] hover:text-white`}
       onClick={() => {
         handleFilterTask(statusButton);
         handdleChangeButton();

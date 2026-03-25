@@ -30,40 +30,37 @@ const AddTaskForm = ({ onAdd }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-4 flex flex-col gap-2"
-    >
-      <p className="text-3xl font-bold text-center">Thêm Task</p>
-      <div>
-        <p className="text-md font-semibold">Tên Task</p>
+    <form onSubmit={handleSubmit} className="mx-auto p-4 flex flex-col gap-2">
+      <p className="text-3xl font-bold text-center">Thêm Công Việc Mới</p>
+      <div className="border-b-gray-300 border-b">
+        <p className="text-xl font-semibold cursor-default">Tên Task</p>
         <input
           type="text"
           name="title"
           placeholder="Tiêu đề"
           value={task.title}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="w-full p-2 rounded-lg outline-0"
         />
       </div>
-      <div>
-        <p className="text-md font-semibold">Mô tả</p>
+      <div className="border-b-gray-300 border-b ">
+        <p className="text-xl font-semibold">Mô tả</p>
         <textarea
           name="description"
           placeholder="Mô tả"
           value={task.description}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="w-full p-2 outline-none min-h-[300px] resize-none"
         />
       </div>
       <div>
-        <p className="text-md font-semibold">Dealine</p>{" "}
+        <p className="text-md font-semibold">Dealine</p>
         <input
           type="date"
           name="deadline"
           value={task.deadline}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="w-full p-2 border-b outline-none bg-transparent"
         />
       </div>
       <button

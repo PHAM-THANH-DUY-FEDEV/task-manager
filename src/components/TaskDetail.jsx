@@ -32,13 +32,13 @@ const TaskDetail = ({ id, title, description, deadline, status }) => {
   };
 
   return (
-    <div className="w-full p-4 space-y-4">
+    <div className="w-full p-4 space-y-4 overflow-hidden">
       <input
         type="text"
         name="title"
         value={form.title}
         onChange={handleChange}
-        className="w-full text-3xl font-bold outline-none focus:border-orange-400"
+        className="w-full text-2xl font-bold outline-none focus:border-orange-400"
       />
 
       <div className="flex items-center gap-3 ">
@@ -72,7 +72,7 @@ const TaskDetail = ({ id, title, description, deadline, status }) => {
           idTask={id}
         ></ButtonSelect>
         <ButtonSelect
-          statusButton="Vừa tạo"
+          statusButton="Vừa Tạo"
           statusCurrent={currentTask?.status}
           textButton="Vừa Tạo"
           onUpdate={updateTaskStatus}
@@ -86,12 +86,14 @@ const TaskDetail = ({ id, title, description, deadline, status }) => {
           idTask={id}
         ></ButtonSelect>
       </div>
-      <textarea
-        name="description"
-        value={form.description}
-        onChange={handleChange}
-        className="w-full h-auto min-h-[500px] rounded-lg outline-none focus:none resize-none"
-      />
+      <div className=" overflow-hidden">
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          className="w-full h-[400px] md:max-h-[70hv] rounded-lg outline-none focus:none resize-none "
+        />
+      </div>
     </div>
   );
 };

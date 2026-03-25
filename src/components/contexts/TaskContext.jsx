@@ -16,6 +16,8 @@ export const TaskProvider = ({ children }) => {
     }
   });
   const [filteredTasks, setFilteredTasks] = useState(tasks);
+  const [showPoppup, setShowPoppup] = useState(false);
+  const [statisData, setStatisData] = useState({});
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [taskSelected, setTaskSelected] = useState(() => {
@@ -34,6 +36,21 @@ export const TaskProvider = ({ children }) => {
       return matchesStatus && matchesTitle;
     });
     setFilteredTasks(filtered);
+  };
+
+  const handleGetStatis = () => {
+    const result = tasks.reduce(
+      (acc, task) => {
+        if (task.status === "Hoàn Thành") acc.Complete++;
+        if (task.status === "Vừa Tạo") acc.Todo++;
+        if (task.status === "Đang Làm") acc.Process++;
+        acc.Total++;
+        return acc;
+      },
+      { Complete: 0, Todo: 0, Process: 0, Total: 0 },
+    );
+    setStatisData(result);
+    console.log(result);
   };
 
   const handleFilterTask = (status) => {
@@ -89,6 +106,7 @@ export const TaskProvider = ({ children }) => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     handleFilterTask(statusFilter);
     handleSearchTask(searchTerm);
+    handleGetStatis();
   }, [tasks]);
 
   return (
@@ -106,6 +124,9 @@ export const TaskProvider = ({ children }) => {
         filteredTasks,
         handleFilterTask,
         handleSearchTask,
+        showPoppup,
+        setShowPoppup,
+        statisData,
       }}
     >
       {children}

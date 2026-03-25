@@ -1,0 +1,13 @@
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
