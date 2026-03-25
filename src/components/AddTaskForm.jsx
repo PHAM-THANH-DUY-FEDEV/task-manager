@@ -30,8 +30,8 @@ const AddTaskForm = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto p-4 flex flex-col gap-2">
-      <p className="text-3xl font-bold text-center">Thêm Công Việc Mới</p>
+    <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-2">
+      <p className="text-xl font-bold text-center">Thêm Công Việc Mới</p>
       <div className="border-b-gray-300 border-b">
         <p className="text-xl font-semibold cursor-default">Tên Task</p>
         <input
@@ -50,7 +50,7 @@ const AddTaskForm = ({ onAdd }) => {
           placeholder="Mô tả"
           value={task.description}
           onChange={handleChange}
-          className="w-full p-2 outline-none min-h-[300px] resize-none"
+          className="w-full p-2 outline-none md:min-h-[300px] resize-none"
         />
       </div>
       <div>

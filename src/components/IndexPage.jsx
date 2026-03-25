@@ -120,8 +120,8 @@ const IndexPage = () => {
                 <X size={20} />
               </button>
             </div>
-            <div className="p-6 pt-0  custom-scrollbar">
-              <div className="mt-2">
+            <div className="p-6 pt-0 custom-scrollbar min-w-[40vh]">
+              <div>
                 {showAddForm ? (
                   <AddTaskForm onAdd={handleAddTask} />
                 ) : (
