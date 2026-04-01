@@ -6,6 +6,7 @@ import { Plus, Trash2, X } from "lucide-react";
 import AddTaskForm from "./AddTaskForm";
 import FilterBar from "./FilterBar";
 import Statis from "./Statis";
+import { useNavigate } from "react-router-dom";
 
 const IndexPage = () => {
   const {
@@ -19,6 +20,7 @@ const IndexPage = () => {
     onDeleteTask,
     showPoppup,
   } = useContext(TaskContext);
+  const navigate = useNavigate();
   console.log(tasks);
   const handleAddTask = (task) => {
     console.log(tasks);
@@ -68,7 +70,13 @@ const IndexPage = () => {
               <Statis></Statis>
             </div>
           </div>
-          <div>
+          <div className="flex gap-6">
+            <button
+              onClick={() => navigate("/journal")}
+              className="py-2 px-6 flex gap-2 items-center cursor-pointer bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-80 rounded-full shadow-md transition-all active:scale-95"
+            >
+              Nhật ký
+            </button>
             <button
               className="w-full md:w-auto py-2 px-6 flex gap-2 justify-center items-center cursor-pointer bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-90 rounded-full shadow-md transition-all active:scale-95"
               onClick={() => {
