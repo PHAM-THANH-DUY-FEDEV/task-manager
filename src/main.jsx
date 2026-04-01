@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App.jsx";
 import { TaskProvider } from "./components/contexts/TaskContext.jsx";
 import { JournalProvider } from "./components/contexts/JournalContext.jsx";
+import { LearnedProvider } from "./components/contexts/LearnedContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <JournalProvider>
-      <TaskProvider>
-        <App />
-      </TaskProvider>
-    </JournalProvider>
+    <LearnedProvider>
+      <JournalProvider>
+        <TaskProvider>
+          <App />
+        </TaskProvider>
+      </JournalProvider>
+    </LearnedProvider>
   </StrictMode>,
 );

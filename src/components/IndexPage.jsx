@@ -70,7 +70,14 @@ const IndexPage = () => {
               <Statis></Statis>
             </div>
           </div>
+
           <div className="flex gap-6">
+            <button
+              onClick={() => navigate("/learned")}
+              className="py-2 px-6 flex gap-2 items-center cursor-pointer bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-80 rounded-full shadow-md"
+            >
+              Đã học
+            </button>
             <button
               onClick={() => navigate("/journal")}
               className="py-2 px-6 flex gap-2 items-center cursor-pointer bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white hover:opacity-80 rounded-full shadow-md transition-all active:scale-95"

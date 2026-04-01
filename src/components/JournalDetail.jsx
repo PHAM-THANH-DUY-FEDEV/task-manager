@@ -18,28 +18,54 @@ const JournalDetail = () => {
   };
 
   return (
-    <div className="p-6 space-y-4">
-      <h2 className="text-xl font-bold">{journalSelected?.title}</h2>
-
-      <textarea
-        value={content}
-        onChange={handleChange}
-        className="w-full h-[300px] border rounded-lg p-3 outline-none"
-      />
-
-      <div className="flex justify-end gap-3">
+    <div className="p-2">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <span className="px-3 py-1 bg-orange-100 text-[#fe8c00] text-[10px] font-black uppercase tracking-widest rounded-full">
+            Chi tiết nhật ký
+          </span>
+          <h2 className="text-2xl font-black text-slate-900 mt-2 tracking-tight">
+            {journalSelected?.title}
+          </h2>
+        </div>
         <button
-          onClick={() => deleteJournal(journalSelected.id)}
-          className="px-4 py-2 bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white rounded-full hover:opacity-80"
+          onClick={() => setShowJournalPopup(false)}
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-all"
         >
-          Xóa
+          ✕
+        </button>
+      </div>
+
+      <div className="relative group">
+        <textarea
+          value={content}
+          onChange={handleChange}
+          className="w-full h-[400px] border-2 border-slate-50 bg-slate-50 rounded-[2rem] p-6 text-slate-700 leading-relaxed outline-none focus:border-[#ffa32c]/30 focus:bg-white transition-all resize-none shadow-inner"
+          placeholder="Viết nội dung tại đây..."
+        />
+        <div className="absolute bottom-4 right-6 pointer-events-none opacity-20 group-focus-within:opacity-0 transition-opacity">
+          ✍️
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-3 mt-6">
+        <button
+          onClick={() => {
+            if (window.confirm("Xóa nhật ký này?")) {
+              deleteJournal(journalSelected.id);
+              setShowJournalPopup(false);
+            }
+          }}
+          className="px-6 py-3 text-slate-400 font-bold hover:text-red-500 transition-colors text-sm"
+        >
+          Xóa bỏ
         </button>
 
         <button
           onClick={() => setShowJournalPopup(false)}
-          className="px-4 py-2 bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white rounded-full hover:opacity-80"
+          className="px-8 py-3 bg-gradient-to-r from-[#ffa32c] to-[#fe8c00] text-white font-black rounded-2xl shadow-lg shadow-orange-200 hover:scale-105 active:scale-95 transition-all text-sm uppercase tracking-widest"
         >
-          Đóng
+          Hoàn tất
         </button>
       </div>
     </div>
